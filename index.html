@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Resents - The OG for ALL!!</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f0eb;
+      --cream: #ede7dc;
+      --accent: #d0b686;
+      --accent2: #db6fa5;
+      --mid: #3f3e3e;
+      --text-muted: #888;
+      --card-bg: #161616;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--accent);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      padding: 7px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-track span { margin: 0 2.5rem; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #222;
+    }
+    nav {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-decoration: none;
+      line-height: 1;
+    }
+    .logo span { color: var(--accent); }
+
+    nav ul {
+      display: flex; gap: 2.2rem;
+      list-style: none;
+    }
+    nav ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    .nav-icons { display: flex; gap: 1.2rem; align-items: center; }
+    .nav-icons button {
+      background: none; border: none; cursor: pointer;
+      color: var(--white); font-size: 1.15rem;
+      transition: color 0.2s;
+    }
+    .nav-icons button:hover { color: var(--accent); }
+    .cart-btn {
+      background: var(--accent) !important;
+      color: var(--black) !important;
+      border-radius: 50px;
+      padding: 8px 18px !important;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem !important;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 60px 28px 40px;
+      gap: 40px;
+    }
+    .hero-text { animation: fadeUp 0.9s ease both; }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+      padding: 14px 32px;
+      border: none; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,169,110,0.35); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border: 1px solid #444;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* hero visual */
+    .hero-visual {
+      position: relative;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+    .hero-img-wrapper {
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--card-bg);
+      position: relative;
+    }
+    .hero-img-wrapper img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 28px; left: -28px;
+      background: var(--accent2);
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      box-shadow: 0 8px 28px rgba(230,57,70,0.4);
+    }
+    .hero-badge strong { display: block; font-size: 1.5rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+    .hero-stat {
+      position: absolute;
+      top: 28px; right: -20px;
+      background: var(--card-bg);
+      border: 1px solid #2e2e2e;
+      border-radius: 14px;
+      padding: 16px 22px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hero-stat strong { display: block; font-size: 1.6rem; font-family: 'Bebas Neue', sans-serif; color: var(--white); letter-spacing: 0.04em; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 90px 28px; max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 48px;
+    }
+    .section-title em {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+    }
+
+    /* ── CATEGORIES ── */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .cat-card {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 2/3;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    .cat-card:hover { transform: translateY(-6px); }
+    .cat-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .cat-card:hover img { transform: scale(1.07); }
+    .cat-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 22px 18px;
+    }
+    .cat-overlay h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+    }
+    .cat-overlay span {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #1e1e1e;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+    .product-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+    .product-tag {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--accent2);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .product-tag.new { background: #2d9e6b; }
+    .wishlist-btn {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(10,10,10,0.7);
+      border: none; border-radius: 50%;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #fff; font-size: 0.85rem;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s, color 0.2s;
+    }
+    .wishlist-btn:hover { background: var(--accent2); }
+    .product-info { padding: 16px 16px 20px; }
+    .product-brand {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .product-name {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .price { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--white); }
+    .price del { color: var(--text-muted); font-size: 0.9rem; margin-right: 6px; }
+    .add-btn {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .add-btn:hover { opacity: 0.85; }
+
+    /* ── BANNER STRIP ── */
+    .banner-strip {
+      background: linear-gradient(135deg, #1a1108 0%, var(--mid) 100%);
+      border: 1px solid #2e2a20;
+      border-radius: 24px;
+      padding: 64px 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+      margin: 0 28px 90px;
+      max-width: 1280px;
+    }
+    .banner-strip h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .banner-strip h2 em {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+    }
+    .banner-strip p { margin-top: 12px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; max-width: 460px; }
+
+    /* ── TRENDING ── */
+    .trending-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 22px;
+    }
+    .trend-big {
+      border-radius: 18px; overflow: hidden;
+      position: relative; aspect-ratio: 2/3;
+      background: var(--card-bg);
+    }
+    .trend-big img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s; }
+    .trend-big:hover img { transform: scale(1.04); }
+    .trend-big-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 32px 26px;
+    }
+    .trend-big-overlay .label {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px; font-weight: 500;
+    }
+    .trend-big-overlay h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.04em; margin-bottom: 10px; }
+    .trend-small-col { display: flex; flex-direction: column; gap: 22px; }
+    .trend-small {
+      border-radius: 14px; overflow: hidden;
+      position: relative; flex: 1; min-height: 0;
+      background: var(--card-bg);
+    }
+    .trend-small img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s; }
+    .trend-small:hover img { transform: scale(1.05); }
+    .trend-small-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 18px 16px;
+    }
+    .trend-small-overlay h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.05em; }
+    .trend-small-overlay span { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ── WHY US ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .why-card {
+      background: var(--card-bg);
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 32px 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .why-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .why-icon {
+      font-size: 2rem; margin-bottom: 18px;
+    }
+    .why-card h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .why-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--card-bg);
+      border: 1px solid #1e1e1e;
+      border-radius: 24px;
+      padding: 72px 56px;
+      text-align: center;
+      margin: 0 28px 90px;
+      max-width: 1280px;
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(200,169,110,0.08) 0%, transparent 70%);
+    }
+    .newsletter h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: 0.04em; margin-bottom: 12px; position: relative; }
+    .newsletter p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px; position: relative; }
+    .newsletter-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .newsletter-form input {
+      background: #0a0a0a;
+      border: 1px solid #2e2e2e;
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      width: 320px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form button {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      border-radius: 50px;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .newsletter-form button:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070707;
+      border-top: 1px solid #181818;
+      padding: 64px 28px 32px;
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo { font-size: 2rem; display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 270px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid #2e2e2e;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    .footer-col h5 {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1280px; margin: 0 auto;
+      border-top: 1px solid #181818;
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: var(--text-muted); }
+    .footer-payment { display: flex; gap: 8px; }
+    .pay-badge {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .products-grid, .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .trending-row { grid-template-columns: 1fr 1fr; }
+      .trend-big { display: none; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .banner-strip { grid-template-columns: 1fr; padding: 40px 28px; }
+      nav ul { display: none; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .newsletter { padding: 40px 22px; }
+      .newsletter-form input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>FREE SHIPPING OVER ₹999</span>
+    <span>★</span>
+    <span>NEW DROP EVERY FRIDAY</span>
+    <span>★</span>
+    <span>EASY RETURNS — 15 DAYS</span>
+    <span>★</span>
+    <span>STUDENT SPECIAL: 10% OFF WITH ID</span>
+    <span>★</span>
+    <span>FREE SHIPPING OVER ₹999</span>
+    <span>★</span>
+    <span>NEW DROP EVERY FRIDAY</span>
+    <span>★</span>
+    <span>EASY RETURNS — 15 DAYS</span>
+    <span>★</span>
+    <span>STUDENT SPECIAL: 10% OFF WITH ID</span>
+    <span>★</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <a href="#" class="logo">RE<span>●</span>SENTS</a>
+    <ul>
+      <li><a href="#new">New In</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#trending">Trending</a></li>
+      <li><a href="#sale">Sale</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button title="Search">🔍</button>
+      <button title="Wishlist">🤍</button>
+      <button class="cart-btn" title="Cart">Cart</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div style="max-width:1280px;margin:0 auto;">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow"> The OG Fashion Destination</p>
+      <h1>Dress Like <em>You</em> Own The <em>Era</em></h1>
+      <p>Trending fits, street-ready looks, and everyday with something new and trending. Resents is where style meets sense.</p>
+      <div class="hero-btns">
+        <a href="#new" class="btn-primary">Shop New Drops</a>
+        <a href="#trending" class="btn-ghost">See What's Trending</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img src="https://i.pinimg.com/736x/40/a8/bd/40a8bd46b59c1f914ba1c7fb80df242f.jpg" alt="Fashion Model" />
+      </div>
+      <div class="hero-badge">
+        <strong>40% OFF</strong>
+        Season Sale
+      </div>
+      <div class="hero-stat">
+        <strong>12K+</strong>
+        Happy Customers
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <p class="section-label">Browse by Style</p>
+  <h2 class="section-title">Shop by <em>Category</em></h2>
+  <div class="categories-grid">
+    <div class="cat-card">
+      <img src="https://i.pinimg.com/736x/c2/78/dd/c278dd132d210c10307edf37261901da.jpg" alt="Men" />
+      <div class="cat-overlay">
+        <span>52 Styles</span>
+        <h3>Men's Wear</h3>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://i.pinimg.com/736x/fd/c7/1b/fdc71b4df0bcf3eeeccb48bacf289b6b.jpg" alt="Women" />
+      <div class="cat-overlay">
+        <span>78 Styles</span>
+        <h3>Women's Wear</h3>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://i.pinimg.com/736x/36/e1/15/36e115228defa3023f53d560a1a1f99d.jpg" alt="Streetwear" />
+      <div class="cat-overlay">
+        <span>34 Styles</span>
+        <h3>Streetwear</h3>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://i.pinimg.com/736x/17/bc/5c/17bc5c2652efd9c37c1e6fe1e2356759.jpg" alt="Accessories" />
+      <div class="cat-overlay">
+        <span>20 Items</span>
+        <h3>Accessories</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section id="new">
+  <p class="section-label">Fresh Off The Rack</p>
+  <h2 class="section-title">New <em>Arrivals</em></h2>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://i.pinimg.com/736x/f3/81/20/f38120b6cc339d3e2cc32212cad0d1f0.jpg" alt="Oversized Tee" />
+        <span class="product-tag new">New</span>
+        <button class="wishlist-btn">🤍</button>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Resents Basics</p>
+        <p class="product-name">Waist-shirt Top</p>
+        <div class="product-footer">
+          <div class="price">₹699</div>
+          <button class="add-btn">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://i.pinimg.com/736x/16/12/11/16121141f7b291f5aa4f31269f6311ae.jpg" alt="Cargo Pants" />
+        <span class="product-tag">Hot 🔥</span>
+        <button class="wishlist-btn">🤍</button>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Resents Street</p>
+        <p class="product-name">Y2K outfits - Sporty Glam jersey</p>
+        <div class="product-footer">
+          <div class="price"><del>₹1,499</del> ₹999</div>
+          <button class="add-btn">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://i.pinimg.com/474x/92/71/0b/92710b72b086565ca71d8d56bec0837a.jpg" alt="Floral Dress" />
+        <span class="product-tag new">New</span>
+        <button class="wishlist-btn">🤍</button>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Resents Femme</p>
+        <p class="product-name">Denim Mini Dress</p>
+        <div class="product-footer">
+          <div class="price">₹1,099</div>
+          <button class="add-btn">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://i.pinimg.com/736x/76/96/a0/7696a0a7ae4d89e4d724d52cd7648f9d.jpg" alt="Hoodie" />
+        <span class="product-tag">Best Seller</span>
+        <button class="wishlist-btn">🤍</button>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Resents Co.</p>
+        <p class="product-name">Ballerina Sandals</p>
+        <div class="product-footer">
+          <div class="price"><del>₹2,099</del> ₹1,099</div>
+          <button class="add-btn">Add +</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SALE BANNER -->
+<div style="max-width:1280px;margin:0 auto;" id="sale">
+  <div class="banner-strip">
+    <div>
+      <h2>Season Finale Sale.<br><em>Up to 50% Off.</em></h2>
+      <p>Don't sleep on it — our biggest sale of the semester. From everyday tees to statement pieces, everything's been marked way down.</p>
+    </div>
+    <a href="#" class="btn-primary" style="white-space:nowrap;">Shop the Sale →</a>
+  </div>
+</div>
+
+<!-- TRENDING -->
+<section id="trending">
+  <p class="section-label">What's Hot Right Now</p>
+  <h2 class="section-title">On the <em>Radar</em></h2>
+  <div class="trending-row">
+    <div class="trend-big">
+      <img src="https://i.pinimg.com/736x/86/7e/46/867e46ca1714f9c04525e21532524090.jpg" alt="Street Style" />
+      <div class="trend-big-overlay">
+        <span class="label">Trending Look</span>
+        <h3>The Street Edit 2025</h3>
+        <a href="#" class="btn-primary" style="margin-top:4px;font-size:0.72rem;padding:10px 22px;">Shop Now</a>
+      </div>
+    </div>
+    <div class="trend-small-col">
+      <div class="trend-small">
+        <img src="https://i.pinimg.com/736x/9e/0c/f7/9e0cf7bd2bfcd664cc1ce0ef9f73921a.jpg" alt="Jacket" />
+        <div class="trend-small-overlay">
+          <span>unisex</span>
+          <h4>Jacket Season</h4>
+        </div>
+      </div>
+      <div class="trend-small">
+        <img src="https://i.pinimg.com/736x/7a/54/0f/7a540fc4e6d351bd2e74cbeca147d747.jpg" alt="Coord Set" />
+        <div class="trend-small-overlay">
+          <span>Women's</span>
+          <h4>Co-ord Set</h4>
+        </div>
+      </div>
+    </div>
+    <div class="trend-small-col">
+      <div class="trend-small">
+        <img src="https://i.pinimg.com/736x/42/f2/e7/42f2e75ea3319fca85e445ee942fe39e.jpg" alt="Sneakers" />
+        <div class="trend-small-overlay">
+          <span>Footwear</span>
+          <h4>Hello kitty crocs</h4>
+        </div>
+      </div>
+      <div class="trend-small">
+        <img src="https://i.pinimg.com/1200x/d7/a5/4f/d7a54fba1e5c65b8bf808dbce3b7ea1e.jpg" alt="Accessories" />
+        <div class="trend-small-overlay">
+          <span>Accessories</span>
+          <h4>Noor Jahan Ear-cuffs</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="about">
+  <p class="section-label">Why Resents?</p>
+  <h2 class="section-title">Fashion that <em>Respects</em> <strong>You</strong></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h4>Trend-Accurate</h4>
+      <p>Our buyers are plugged into global fashion weeks and street culture, so you get what's actually hot right now.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💸</div>
+      <h4>Pocket-Friendly Prices</h4>
+      <p>Real quality at real prices. Because - a new style for eveyday is needed.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔄</div>
+      <h4>Hassle-Free Returns</h4>
+      <p>7-day free returns. Try it, love it, or send it back. Simple as that.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <h4>Fast Delivery</h4>
+      <p>Orders shipped within 24 hours. Free delivery on orders above 999. <em>Happy Customers, Happy US : )</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div style="max-width:1280px;margin:0 auto;">
+  <div class="newsletter">
+    <h2>Stay Ahead of the Drop</h2>
+    <p>Subscribe for exclusive early access, student deals, and weekly style inspo — straight to your inbox.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Enter your email address" />
+      <button>Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">RE<span style="color:var(--accent)">●</span>SENTS</a>
+      <p>The OG fashion destination for everyone who refuses to blend in. Trending styles, honest prices, zero compromise.</p>
+      <div class="footer-social">
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">📸</a>
+        <a href="#" class="social-link">▶</a>
+        <a href="#" class="social-link">📌</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Men's Wear</a></li>
+        <li><a href="#">Women's Wear</a></li>
+        <li><a href="#">Streetwear</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Help</h5>
+      <ul>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Resents</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Resents Fashion Pvt. Ltd. All rights reserved. Made with ❤️ in India.</p>
+    <div class="footer-payment">
+      <span class="pay-badge">UPI</span>
+      <span class="pay-badge">Visa</span>
+      <span class="pay-badge">MC</span>
+      <span class="pay-badge">COD</span>
+      <span class="pay-badge">EMI</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
